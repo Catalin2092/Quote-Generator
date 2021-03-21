@@ -1,3 +1,10 @@
+const quoteContainer = document.getElementById('quote-container');
+const quoteText = document.getElementById('quote');
+const authorText = document.getElementById('author');
+const twitterBtn = document.getElementById('twitter');
+const facebookBtn = document.getElementById('facebook');
+const newQuoteBtn = document.getElementById('new-quote');
+
 // Get Quote From API
 async function getQuote() {
     const proxyUrl = 'https://obscure-eyrie-36566.herokuapp.com/';
@@ -5,10 +12,15 @@ async function getQuote() {
     try {
         const response = await fetch(proxyUrl + apiUrl);
         const data = await response.json();
-        console.log(data);
+        // If Author is blank, add 'Unknown'
+        if (data.quoteAuthor == '') {
+            authorText.innerText = 'Unknown';
+        } else {
+            authorText.innerText = data.quoteAuthor;
+        }
+        quoteText.innerText = data.quoteText;
     } catch (error) {
         getQuote();
-        console.log('whoops, no quote', error);
     }
 }
 
