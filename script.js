@@ -37,23 +37,9 @@ function tweetQuote () {
     window.open(twitterUrl, '_blank');
 }
 
-function facebookShare () {
-    const quote = quoteText.innerText;
-    const author = authorText.innerText;
-    const facebookUrl = `http://www.facebook.com/sharer.php?u=&${window.location.href}&t=${quote} - ${author}`;
-    window.open(facebookUrl, '_blank');
-}
-
-function facebookShare(descr, winWidth, winHeight) {
-    var winTop = (screen.height / 2) - (winHeight / 2);
-    var winLeft = (screen.width / 2) - (winWidth / 2);
-    window.open('http://www.facebook.com/sharer.php?s=100&p[title]=' + document.title + '&p[summary]=' + quote + '-' + author + '&p[url]=' + window.location.href, 'sharer', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width='+winWidth+',height='+winHeight);
-}
-
 // Event Listeners
 newQuoteBtn.addEventListener('click', getQuote);
 twitterBtn.addEventListener('click', tweetQuote);
-facebookBtn.addEventListener('click', facebookShare);
 
 //On Load
 getQuote();
